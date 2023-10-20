@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: go-hello-world-ingress
+  namespace: default
+  labels:
+    app: go-hello-world
+  annotations:
+    cert-manager.io/cluster-issuer: lets-encrypt
+spec:
+  tls:
+    - hosts:
+        - go-hello-world.nihatalim.com.tr
+      secretName: go-hello-world-ingress-tls
+  rules:
+    - host: go-hello-world.nihatalim.com.tr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: go-hello-world-service
+                port:
+                  number: 8080
