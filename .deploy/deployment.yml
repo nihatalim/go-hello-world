@@ -16,7 +16,7 @@ spec:
         app: go-hello-world
     spec:
       imagePullSecrets:
-        - name: git-secret
+        - name: differ-secret
       containers:
         - name: go-hello-world-container
           resources:
